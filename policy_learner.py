@@ -13,7 +13,7 @@ from visualizer import Visualizer
 
 logger = logging.getLogger(__name__)
 #locale.setlocale(locale.LC_ALL, 'ko_KR.UTF-8')
-local.setlocale(locale.LC_ALL, '')
+locale.setlocale(locale.LC_ALL, '')
 
 
 class PolicyLearner:

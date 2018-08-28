@@ -58,7 +58,7 @@ class Agent:
         self.initial_balance = balance
 
     def get_states(self):
-        self.ratio_hold = self.num_hold / int(
+        self.ratio_hold = self.num_stocks / int(
             self.portfolio_value / self.environment.get_price())
         self.ratio_portfolio_value = self.portfolio_value / self.initial_balance
         return (
@@ -76,7 +76,7 @@ class Agent:
             exploration = False
             probs = policy_network.predict(sample)  # 각 행동에 대한 확률
             action = np.argmax(probs) if np.max(probs) > 0.1 else Agent.ACTION_HOLD
-            confidence = 1 + probs[action]
+            confidence = probs[action]
         return action, confidence, exploration
 
     def validate_action(self, action):
@@ -167,7 +167,3 @@ class Agent:
         else:
             delayed_reward = -1
         return self.immediate_reward, delayed_reward
-
-
-
-# confidence = 1 + probs[action] / (np.sum(probs))
